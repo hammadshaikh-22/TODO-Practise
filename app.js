@@ -21,9 +21,11 @@ function submit() {
 
 	var inputBtn = document.createElement("input")
 	inputBtn.setAttribute("onclick","inputSelect()")
+	inputBtn.setAttribute("class","form-check-input")
 	inputBtn.type = "checkbox"
 
 	var liTag = document.createElement("li") // tag new
+	liTag.setAttribute("class","list-group-item list-group-item-secondary")
 
 	//b tag create for store data 
 	var bTag = document.createElement("b")
@@ -34,11 +36,13 @@ function submit() {
 	var editButton = document.createElement("button")
 	editButton.innerText = "EDIT"
 	editButton.setAttribute("onclick", "editTodo(this)")
+	editButton.setAttribute("class","btn btn-warning")
 
 	var deleteButton = document.createElement("button")
 	deleteButton.innerText = "DELETE"
 	deleteButton.style.marginLeft = "20px"
 	deleteButton.setAttribute("onclick", "deleteTodo(this)")
+	deleteButton.setAttribute("class","btn btn-danger")
 
 
 
@@ -52,7 +56,7 @@ function submit() {
 	todo.appendChild(liTag)
 	input.value = ""
 
-	if(deleteAllStatus == false){
+	if(deleteAllStatus == false && todo.childNodes.length>1){
 		deleteAllBtn.style.display = "inline"
 	}
 
@@ -69,6 +73,7 @@ function deleteTodo(e) {
 }
 
 function editTodo(e) {
+	
 	// console.log(e.parentNode.childNodes[0])
 	input.value = e.parentNode.childNodes[1].innerText
 	submitbtn.style.display = "none"
@@ -80,10 +85,15 @@ function editTodo(e) {
 }
 
 function updatebtn() {
+	if (input.value == "") {
+		return null
+
+	}
 	selectlist.childNodes[1].innerText = input.value
 	update.style.display = "none"
 	submitbtn.style.display = "inline"
 	input.value = ""
+	editStatus=false
 
 }
 function deleteAll(){
@@ -99,6 +109,9 @@ function deleteSelected(){
 			i--
 		}
 	}
+	deleteSelect.style.display="none"
+	selectStatus=false
+	
 }
 function inputSelect(){
 	var selectStatus = false
@@ -120,6 +133,7 @@ document.addEventListener("keydown", function (e) {
 	if (e.key == "Enter") {
 		if(editStatus == true){
 			updatebtn()
+			
 		}
 		else{
 			submit()
