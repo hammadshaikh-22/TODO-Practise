@@ -77,7 +77,7 @@ function updatebtn() {
 function deleteAll(){
 	//todo.innerHTML = ""
 	//deleteAllBtn.style.display = "none"
-	deleteAllStatus=true
+	//deleteAllStatus=true
 }
 
 document.addEventListener("keydown", function (e) {
