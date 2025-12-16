@@ -3,15 +3,26 @@ var input = document.getElementById("input")
 var update = document.getElementById("update")
 var submitbtn = document.getElementById("submit")
 var deleteAllBtn = document.getElementById("deleteAll")
+var deleteSelect = document.getElementById("deleteSelect")
+
 var selectlist = null
 var editStatus =false
 
+
 function submit() {
+	
+	
 	var deleteAllStatus = false
+	
 	if (input.value == "") {
 		return null
 
 	}
+
+	var inputBtn = document.createElement("input")
+	inputBtn.setAttribute("onclick","inputSelect()")
+	inputBtn.type = "checkbox"
+
 	var liTag = document.createElement("li") // tag new
 
 	//b tag create for store data 
@@ -32,6 +43,7 @@ function submit() {
 
 
 	//    store b i li tag
+	liTag.append(inputBtn)
 	liTag.appendChild(bTag)
 	liTag.appendChild(editButton)
 	liTag.appendChild(deleteButton)
@@ -58,7 +70,7 @@ function deleteTodo(e) {
 
 function editTodo(e) {
 	// console.log(e.parentNode.childNodes[0])
-	input.value = e.parentNode.childNodes[0].innerText
+	input.value = e.parentNode.childNodes[1].innerText
 	submitbtn.style.display = "none"
 	update.style.display = "inline"
 	selectlist = e.parentNode
@@ -68,7 +80,7 @@ function editTodo(e) {
 }
 
 function updatebtn() {
-	selectlist.childNodes[0].innerText = input.value
+	selectlist.childNodes[1].innerText = input.value
 	update.style.display = "none"
 	submitbtn.style.display = "inline"
 	input.value = ""
@@ -78,6 +90,30 @@ function deleteAll(){
 	todo.innerHTML = ""
 	deleteAllBtn.style.display = "none"
 	deleteAllStatus=true
+}
+function deleteSelected(){
+	for(var i = 0; i<todo.childNodes.length; i++){
+		//console.log(todo.childNodes[i].childNodes[0].checked)
+		if(todo.childNodes[i].childNodes[0].checked == true){
+			todo.childNodes[i].remove()
+			i--
+		}
+	}
+}
+function inputSelect(){
+	var selectStatus = false
+	for(var i = 0; i<todo.childNodes.length; i++){
+		//console.log(todo.childNodes[i].childNodes[0].checked)
+		if(todo.childNodes[i].childNodes[0].checked){
+			selectStatus = true
+		}
+	}
+	if(selectStatus==true){
+		deleteSelect.style.display ="inline"
+	}
+	else{
+		deleteSelect.style.display ="none"
+	}
 }
 
 document.addEventListener("keydown", function (e) {
