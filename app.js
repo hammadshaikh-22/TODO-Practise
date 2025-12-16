@@ -76,7 +76,7 @@ function updatebtn() {
 }
 function deleteAll(){
 	//todo.innerHTML = ""
-	deleteAllBtn.style.display = "none"
+	//deleteAllBtn.style.display = "none"
 	deleteAllStatus=true
 }
 
