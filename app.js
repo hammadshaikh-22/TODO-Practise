@@ -25,7 +25,7 @@ function submit() {
 	inputBtn.type = "checkbox"
 
 	var liTag = document.createElement("li") // tag new
-	liTag.setAttribute("class","list-group-item list-group-item-secondary")
+	liTag.setAttribute("class","list-group-item-secondary")
 
 	//b tag create for store data 
 	var bTag = document.createElement("b")
